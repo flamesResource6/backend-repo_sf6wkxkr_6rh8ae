@@ -1,48 +1,58 @@
 """
-Database Schemas
+Database Schemas for API Gateway Chargeback Dashboard
 
-Define your MongoDB collection schemas here using Pydantic models.
-These schemas are used for data validation in your application.
-
-Each Pydantic model represents a collection in your database.
-Model name is converted to lowercase for the collection name:
-- User -> "user" collection
-- Product -> "product" collection
-- BlogPost -> "blogs" collection
+Each Pydantic model represents a MongoDB collection.
+Collection name is the lowercase class name.
 """
-
+from typing import Optional, Literal
 from pydantic import BaseModel, Field
-from typing import Optional
+from datetime import datetime
 
-# Example schemas (replace with your own):
+LifecycleStage = Literal["design", "develop", "test", "deploy", "deprecate", "retire"]
+SubscriptionStatus = Literal["active", "paused", "canceled"]
 
-class User(BaseModel):
-    """
-    Users collection schema
-    Collection name: "user" (lowercase of class name)
-    """
-    name: str = Field(..., description="Full name")
-    email: str = Field(..., description="Email address")
-    address: str = Field(..., description="Address")
-    age: Optional[int] = Field(None, ge=0, le=120, description="Age in years")
-    is_active: bool = Field(True, description="Whether user is active")
+class ApiService(BaseModel):
+    name: str = Field(..., description="API display name")
+    version: str = Field("v1", description="Semantic version or label")
+    owner: Optional[str] = Field(None, description="Team or owner")
+    lifecycle_stage: LifecycleStage = Field("deploy")
+    rate_limit_per_min: Optional[int] = Field(None, ge=0)
+    status: Literal["healthy", "degraded", "down"] = Field("healthy")
 
-class Product(BaseModel):
-    """
-    Products collection schema
-    Collection name: "product" (lowercase of class name)
-    """
-    title: str = Field(..., description="Product title")
-    description: Optional[str] = Field(None, description="Product description")
-    price: float = Field(..., ge=0, description="Price in dollars")
-    category: str = Field(..., description="Product category")
-    in_stock: bool = Field(True, description="Whether product is in stock")
+class Plan(BaseModel):
+    name: str
+    tier: Literal["free", "basic", "pro", "enterprise"] = "basic"
+    monthly_price: float = Field(0, ge=0)
+    included_calls: int = Field(10000, ge=0)
+    overage_price_per_call: float = Field(0.0005, ge=0)
 
-# Add your own schemas here:
-# --------------------------------------------------
+class Consumer(BaseModel):
+    name: str
+    email: str
+    company: Optional[str] = None
+    plan_id: Optional[str] = Field(None, description="Reference to plan _id as string")
 
-# Note: The Flames database viewer will automatically:
-# 1. Read these schemas from GET /schema endpoint
-# 2. Use them for document validation when creating/editing
-# 3. Handle all database operations (CRUD) directly
-# 4. You don't need to create any database endpoints!
+class Subscription(BaseModel):
+    consumer_id: str
+    api_id: str
+    plan_id: str
+    start_date: Optional[datetime] = None
+    status: SubscriptionStatus = "active"
+
+class UsageEvent(BaseModel):
+    api_id: str
+    consumer_id: str
+    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    latency_ms: Optional[int] = Field(None, ge=0)
+    status_code: int = Field(200, ge=100, le=599)
+    bytes_in: Optional[int] = Field(0, ge=0)
+    bytes_out: Optional[int] = Field(0, ge=0)
+
+class Chargeback(BaseModel):
+    period: str = Field(..., description="YYYY-MM")
+    consumer_id: str
+    api_id: str
+    plan_id: str
+    calls: int
+    overage_calls: int
+    amount: float

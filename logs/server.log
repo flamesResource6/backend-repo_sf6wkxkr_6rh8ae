@@ -1,0 +1,44 @@
+INFO:     Will watch for changes in these directories: ['/home/workspace']
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:     Started reloader process [218] using StatReload
+INFO:     Started server process [220]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     172.20.0.1:45720 - "HEAD / HTTP/1.1" 405 Method Not Allowed
+INFO:     172.20.0.1:35306 - "OPTIONS /metrics/overview?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35314 - "OPTIONS /apis HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35318 - "OPTIONS /plans HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35328 - "OPTIONS /subscriptions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35330 - "OPTIONS /chargeback?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35340 - "OPTIONS /metrics/overview?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35306 - "OPTIONS /apis HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35318 - "OPTIONS /subscriptions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35314 - "OPTIONS /plans HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35330 - "OPTIONS /chargeback?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35328 - "GET /apis HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35306 - "GET /chargeback?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35328 - "GET /apis HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35340 - "GET /metrics/overview?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35318 - "GET /subscriptions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35306 - "GET /chargeback?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35314 - "GET /plans HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35340 - "GET /subscriptions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35314 - "GET /plans HTTP/1.1" 200 OK
+INFO:     172.20.0.1:35318 - "GET /metrics/overview?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39004 - "GET /apis HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39022 - "GET /subscriptions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:38996 - "GET /plans HTTP/1.1" 200 OK
+INFO:     172.20.0.1:38994 - "GET /metrics/overview?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39036 - "GET /chargeback?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:38994 - "GET /subscriptions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39022 - "GET /apis HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39004 - "GET /plans HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39036 - "GET /chargeback?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:38996 - "GET /metrics/overview?period=2025-11 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39016 - "OPTIONS /metrics/overview?period=2025-10 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:39016 - "GET /apis HTTP/1.1" 200 OK
+INFO:     172.20.0.1:60500 - "OPTIONS /chargeback?period=2025-10 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:60510 - "GET /subscriptions HTTP/1.1" 200 OK
+INFO:     172.20.0.1:60516 - "GET /plans HTTP/1.1" 200 OK
+INFO:     172.20.0.1:60500 - "GET /chargeback?period=2025-10 HTTP/1.1" 200 OK
+INFO:     172.20.0.1:60532 - "GET /metrics/overview?period=2025-10 HTTP/1.1" 200 OK
